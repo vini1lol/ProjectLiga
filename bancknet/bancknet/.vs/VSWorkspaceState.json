@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Areas\\Identity",
+    "\\Areas\\Identity\\Data",
+    "\\Areas\\Identity\\Pages",
+    "\\Models",
+    "\\Views",
+    "\\Views\\Home",
+    "\\Views\\User",
+    "\\Views\\Wallet",
+    "\\wwwroot"
+  ],
+  "SelectedNode": "\\bancknet.csproj",
+  "PreviewInSolutionExplorer": false
+}

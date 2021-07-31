@@ -92,7 +92,7 @@ namespace bancknet.Controllers
             {
                 await HttpContext.SignOutAsync();
             }
-            return RedirectToAction("Login");
+            return RedirectToAction("Index","Home");
         }
     }
 }

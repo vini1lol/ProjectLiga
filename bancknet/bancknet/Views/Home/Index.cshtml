@@ -4,5 +4,12 @@
 
 <div class="text-center">
     <h1 class="display-4">Bem vindo</h1>
-    <p>Para entar na sua carteira basta clicar em User </p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>Para entrar na sua carteira @User.Identity.Name, basta clicar em Carteira </p>
+    }
+    else
+    {
+        <p>Para entrar na sua carteira basta Fazer Login primeiro </p>
+    }
 </div>

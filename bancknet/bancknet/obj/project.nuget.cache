@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pMWLTHBpI/DQMFO7zczob5Me1VbnfWG0LRTwUJSOsgufZQDKhADiEwErhgRBZccjjt8AMWbzC6fDaD8U6l5WVQ==",
+  "dgSpecHash": "vp3K46B4qsAhhIU2m+wJbjwvzkPJJmyaiFFjz7KqsPNCtFZNq+Z6VhFBSOS09C7MrvQ4SXp6ZhgCFQEM+0J08A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\vinicius\\Desktop\\bancknet\\bancknet\\bancknet.csproj",
+  "projectFilePath": "C:\\Users\\vinicius\\Desktop\\ProgramaaooEmGeral\\git\\ProjectLiga\\bancknet\\bancknet\\bancknet.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vinicius\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\vinicius\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.8\\microsoft.aspnetcore.cryptography.internal.5.0.8.nupkg.sha512",
