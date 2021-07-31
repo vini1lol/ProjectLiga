@@ -29,22 +29,17 @@ namespace bancknet.Controllers
 
         //Post creat
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Creat(User obj)
         {
             _db.User.Add(obj);
             _db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
 
         //Get creat
         public IActionResult Creat()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return View();
-            }
-            return RedirectToAction("Login");
+            return View();
         }
 
         //Get login
