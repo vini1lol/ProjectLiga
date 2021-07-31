@@ -31,6 +31,7 @@ namespace bancknet.Controllers
                 int id = int.Parse(a["Id"]);
                 var user = _db.User.Where(b=>b.userid==id).FirstOrDefault();
                 ViewData.Add("Valor", user.Valor);
+                ViewData.Add("Nome", user.name);
                 IEnumerable<Mywallet> ObjList = _db.Mywallet.Where(b => b.User_id==id);
                 return View(ObjList);
             }
@@ -63,6 +64,51 @@ namespace bancknet.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 return View();
+            }
+            return RedirectToAction("Login", "User");
+        }
+
+        // Get Withdraw
+        public IActionResult Withdraw()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                Dictionary<string, string> a = new Dictionary<string, string>();
+                string[] key = new string[] { "Id", "Name" };
+                int i = 0;
+                foreach (Claim ci in User.Claims)
+                {
+                    a.Add(key[i], ci.Value);
+                    i++;
+                }
+                int id = int.Parse(a["Id"]);
+                var user = _db.User.Where(b => b.userid == id).FirstOrDefault();
+                ViewData.Add("Valor", user.Valor);
+                ViewData.Add("Nome", user.name);
+                IEnumerable<Mywallet> ObjList = _db.Mywallet.Where(b => b.Value < 0 && b.User_id == id);
+                return View("Index", ObjList);
+            }
+            return RedirectToAction("Login", "User");
+        }
+        // Get Deposit
+        public IActionResult Deposit()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                Dictionary<string, string> a = new Dictionary<string, string>();
+                string[] key = new string[] { "Id", "Name" };
+                int i = 0;
+                foreach (Claim ci in User.Claims)
+                {
+                    a.Add(key[i], ci.Value);
+                    i++;
+                }
+                int id = int.Parse(a["Id"]);
+                var user = _db.User.Where(b => b.userid == id).FirstOrDefault();
+                ViewData.Add("Valor", user.Valor);
+                ViewData.Add("Nome", user.name);
+                IEnumerable<Mywallet> ObjList = _db.Mywallet.Where(b => b.Value > 0 && b.User_id == id);
+                return View("Index", ObjList);
             }
             return RedirectToAction("Login", "User");
         }

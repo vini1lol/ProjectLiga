@@ -58,6 +58,8 @@ namespace bancknet.Controllers
         public async Task<IActionResult> LoginAsync(string Email, string Password)
         {
             var user = _db.User.Where(b=> b.email == Email).FirstOrDefault();
+            if (user == null)
+                return RedirectToAction("Login");
             if (user.password == Password)
             {
 
