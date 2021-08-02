@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vinicius\\Desktop\\bancknet\\bancknet\\bancknet.csproj": {}
+    "C:\\Users\\vinicius\\Desktop\\ProgramaaooEmGeral\\git\\ProjectLiga\\bancknet\\bancknet\\bancknet.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vinicius\\Desktop\\bancknet\\bancknet\\bancknet.csproj": {
+    "C:\\Users\\vinicius\\Desktop\\ProgramaaooEmGeral\\git\\ProjectLiga\\bancknet\\bancknet\\bancknet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vinicius\\Desktop\\bancknet\\bancknet\\bancknet.csproj",
+        "projectUniqueName": "C:\\Users\\vinicius\\Desktop\\ProgramaaooEmGeral\\git\\ProjectLiga\\bancknet\\bancknet\\bancknet.csproj",
         "projectName": "bancknet",
-        "projectPath": "C:\\Users\\vinicius\\Desktop\\bancknet\\bancknet\\bancknet.csproj",
+        "projectPath": "C:\\Users\\vinicius\\Desktop\\ProgramaaooEmGeral\\git\\ProjectLiga\\bancknet\\bancknet\\bancknet.csproj",
         "packagesPath": "C:\\Users\\vinicius\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vinicius\\Desktop\\bancknet\\bancknet\\obj\\",
+        "outputPath": "C:\\Users\\vinicius\\Desktop\\ProgramaaooEmGeral\\git\\ProjectLiga\\bancknet\\bancknet\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -44,6 +44,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.2, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.8, )"

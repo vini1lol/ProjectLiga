@@ -5,22 +5,24 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
+//User model
 namespace bancknet.Models
 {
     public class User
     {
         [Key]
         public int userid { get; set; }
-        [DisplayName("Name")]
+        [DisplayName("Nome")]
         [Required]
         public string name { get; set; }
         [DisplayName("Email")]
         [Required]
         public string email { get; set; }
-        [DisplayName("Password")]
+        [DisplayName("Senha")]
         [Required]
         public string password { get; set; }
         [Required]
+        [DisplayName("Valor")]
         public double Valor { get; set; }
         public ICollection<Mywallet> Mywallet { get; set; }
     }
