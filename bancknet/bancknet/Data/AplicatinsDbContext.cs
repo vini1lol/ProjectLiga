@@ -13,8 +13,9 @@ namespace bancknet.Data
         {
 
         }
-
+        //User database
         public DbSet<User> User { get; set; }
+        //Wallet database
         public DbSet<Mywallet> Mywallet { get; set; }
     }
 }

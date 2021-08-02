@@ -319,3 +319,4 @@ C:\Users\vinicius\Desktop\ProgramaaooEmGeral\git\ProjectLiga\bancknet\bancknet\o
 C:\Users\vinicius\Desktop\ProgramaaooEmGeral\git\ProjectLiga\bancknet\bancknet\obj\Debug\net5.0\ref\bancknet.dll
 C:\Users\vinicius\Desktop\ProgramaaooEmGeral\git\ProjectLiga\bancknet\bancknet\obj\Debug\net5.0\bancknet.pdb
 C:\Users\vinicius\Desktop\ProgramaaooEmGeral\git\ProjectLiga\bancknet\bancknet\obj\Debug\net5.0\bancknet.genruntimeconfig.cache
+C:\Users\vinicius\Desktop\ProgramaaooEmGeral\git\ProjectLiga\bancknet\bancknet\bin\Debug\net5.0\BCrypt.Net-Next.dll
