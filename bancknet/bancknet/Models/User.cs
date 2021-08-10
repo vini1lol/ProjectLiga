@@ -21,9 +21,6 @@ namespace bancknet.Models
         [DisplayName("Senha")]
         [Required]
         public string password { get; set; }
-        [Required]
-        [DisplayName("Valor")]
-        public double Valor { get; set; }
         public ICollection<Mywallet> Mywallet { get; set; }
     }
 }
