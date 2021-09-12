@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Wallet.Models.Carteira>
+
+@{
+    ViewData["Title"] = "Suas carteiras";
+}
+
+<h1>Carteiras</h1>
+<br />
+<p>
+    <a class="btn btn-info" asp-action="Create">Adicionar nova carteira</a>
+</p>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-controller="movimentacoes" asp-action="TelaIni"
+                   asp-route-id="@item.Id"
+                   asp-route-nome="@item.Nome"
+                   >
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> 
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Detalhes</a> 
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
