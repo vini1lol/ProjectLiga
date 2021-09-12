@@ -33,10 +33,11 @@ namespace Wallet.Controllers
             var applicationDbContext = _context.Movimentacoes.Where(a=>a.CarteiraId==Id);
             ViewData["Nome"] = nome;
             ViewData["Valor"] = _context.Carteiras.Find(Id).Valor;
+            ViewData["Id"] = Id;
             return View(await applicationDbContext.ToListAsync());
         }
         // GET: Movimentacoes/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(Guid? id,Guid id2, string nome)
         {
             if (id == null)
             {
@@ -50,14 +51,17 @@ namespace Wallet.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Id"] = id2;
+            ViewData["Nome"] = nome;
             return View(movimentacao);
         }
 
         // GET: Movimentacoes/Create
-        public IActionResult Create()
+        public IActionResult Create(Guid Id,string nome)
         {
             ViewData["CarteiraId"] = new SelectList(_context.Carteiras, "Id", "Nome");
+            ViewData["Id"] = Id;
+            ViewData["Nome"] = nome;
             return View();
         }
 
@@ -66,22 +70,27 @@ namespace Wallet.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CarteiraId,Data,Descrip,Valor,Id")] Movimentacao movimentacao)
+        public async Task<IActionResult> Create( Movimentacao movimentacao)
         {
             if (ModelState.IsValid)
             {
                 var carteira = _context.Carteiras.Find(movimentacao.CarteiraId);
-                carteira.Valor += movimentacao.Valor; 
+                carteira.Valor += movimentacao.Valor;
+                movimentacao.Data = DateTime.Now;
+                movimentacao.Id = Guid.NewGuid();
                 _context.Add(movimentacao);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(TelaIni), new { id = carteira.Id, nome = carteira.Nome });
+
             }
             ViewData["CarteiraId"] = new SelectList(_context.Carteiras, "Id", "Nome", movimentacao.CarteiraId);
             return View(movimentacao);
         }
 
         // GET: Movimentacoes/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(Guid? id, Guid id2, string nome)
         {
             if (id == null)
             {
@@ -94,6 +103,8 @@ namespace Wallet.Controllers
                 return NotFound();
             }
             ViewData["CarteiraId"] = new SelectList(_context.Carteiras, "Id", "Nome", movimentacao.CarteiraId);
+            ViewData["Id"] = id2;
+            ViewData["Nome"] = nome;
             return View(movimentacao);
         }
 
@@ -102,7 +113,7 @@ namespace Wallet.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("CarteiraId,Data,Descrip,Valor,Id")] Movimentacao movimentacao)
+        public async Task<IActionResult> Edit(Guid id, [Bind("CarteiraId,Data,Descrip,Valor,Id")] Movimentacao movimentacao, decimal Valor)
         {
             if (id != movimentacao.Id)
             {
@@ -113,6 +124,11 @@ namespace Wallet.Controllers
             {
                 try
                 {
+                    var carteira = _context.Carteiras.Find(movimentacao.CarteiraId);
+                    var mantiga = _context.Movimentacoes.Find(id);
+                    carteira.Valor += -mantiga.Valor;
+                    carteira.Valor += movimentacao.Valor;
+                    _context.Entry(mantiga).State = EntityState.Detached;
                     _context.Update(movimentacao);
                     await _context.SaveChangesAsync();
                 }
@@ -127,14 +143,15 @@ namespace Wallet.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                var nome = _context.Carteiras.Find(movimentacao.CarteiraId).Nome;
+                return RedirectToAction(nameof(TelaIni),new {id=movimentacao.CarteiraId, nome=nome});
             }
             ViewData["CarteiraId"] = new SelectList(_context.Carteiras, "Id", "Nome", movimentacao.CarteiraId);
             return View(movimentacao);
         }
 
         // GET: Movimentacoes/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(Guid? id, Guid id2, string nome)
         {
             if (id == null)
             {
@@ -148,7 +165,8 @@ namespace Wallet.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Id"] = id2;
+            ViewData["Nome"] = nome;
             return View(movimentacao);
         }
 
@@ -158,9 +176,12 @@ namespace Wallet.Controllers
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var movimentacao = await _context.Movimentacoes.FindAsync(id);
+            var carteira = _context.Carteiras.Find(movimentacao.CarteiraId);
+            carteira.Valor += -movimentacao.Valor; 
             _context.Movimentacoes.Remove(movimentacao);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            return RedirectToAction(nameof(TelaIni), new { id = carteira.Id, nome = carteira.Nome });
         }
 
         private bool MovimentacaoExists(Guid id)

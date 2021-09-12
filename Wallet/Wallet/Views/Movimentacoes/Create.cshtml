@@ -1,12 +1,12 @@
 ﻿@model Wallet.Models.Movimentacao
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Criar movimentação";
 }
 
-<h1>Create</h1>
+<h1>Criar</h1>
 
-<h4>Movimentacao</h4>
+<h4>Movimentação</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,11 +15,6 @@
             <div class="form-group">
                 <label asp-for="CarteiraId" class="control-label"></label>
                 <select asp-for="CarteiraId" class ="form-control" asp-items="ViewBag.CarteiraId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Data" class="control-label"></label>
-                <input asp-for="Data" class="form-control" />
-                <span asp-validation-for="Data" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Descrip" class="control-label"></label>
@@ -32,14 +27,17 @@
                 <span asp-validation-for="Valor" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Criar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-info" asp-action="TelaIni" 
+       asp-route-id="@ViewData["Id"]"
+       asp-route-nome="@ViewData["Nome"]"
+       >Voltar a carteira</a>
 </div>
 
 @section Scripts {
